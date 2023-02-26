@@ -1,0 +1,22 @@
+CREATE TABLE books (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+Name TEXT,
+Author TEXT,
+'User Rating' REAL,
+Reviews INTEGER,
+Price REAL,
+Year INTEGER,
+Genre TEXT
+);
+
+CREATE TABLE members (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+Name TEXT
+);
+
+CREATE TABLE checkouts (
+member_id INTEGER,
+book_id INTEGER,
+FOREIGN KEY (member_id) REFERENCES members (id),
+FOREIGN KEY (book_id) REFERENCES books (id)
+);
