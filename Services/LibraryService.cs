@@ -8,6 +8,7 @@ public interface ILibraryService
     public List<Member> GetAllMembers();
     public List<Book> GetBooks(string? searchTerms);
     public bool CheckoutBookForMember(int memberId, int bookId);
+    public bool CheckinBook(int bookId);
 }
 
 public class LibraryService : ILibraryService
@@ -52,6 +53,21 @@ public class LibraryService : ILibraryService
             return false;
 
         _context.Checkouts.Add(new Checkout { MemberId = memberId, BookId = bookId });
+        _context.SaveChanges();
+
+        return true;
+    }
+
+    public bool CheckinBook(int bookId)
+    {
+        if (!_context.Books.Any(b => b.Id == bookId))
+            return false;
+
+        Checkout checkout = _context.Checkouts.SingleOrDefault(co => co.BookId == bookId);
+        if (checkout == null)
+            return false;
+
+        _context.Checkouts.Remove(checkout);
         _context.SaveChanges();
 
         return true;

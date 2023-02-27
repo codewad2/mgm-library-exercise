@@ -36,6 +36,14 @@ public class HomeController : Controller
             new BadRequestResult();
     }
 
+    [HttpPost]
+    public IActionResult CheckinBook(int bookId)
+    {
+        return _libraryService.CheckinBook(bookId) ?
+            new OkResult() :
+            new BadRequestResult();
+    }
+
     public IActionResult Privacy()
     {
         return View();
