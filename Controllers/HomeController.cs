@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using project.Data;
 using project.Models;
 using project.Services;
@@ -25,6 +26,14 @@ public class HomeController : Controller
         model.Books = _libraryService.GetBooks(null);
 
         return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult CheckoutBookForMember(int memberId, int bookId)
+    {
+        return _libraryService.CheckoutBookForMember(memberId, bookId) ?
+            new OkResult() :
+            new BadRequestResult();
     }
 
     public IActionResult Privacy()
