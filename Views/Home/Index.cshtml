@@ -1,8 +1,21 @@
-﻿@{
+﻿@using project.ViewModels;
+@using project.Models;
+@model HomeViewModel;
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @foreach (Member member in Model.Members)
+    {
+        <div>@Html.DisplayFor(modelItem => member.Name)</div>
+    }
+    @foreach (Book book in Model.Books)
+    {
+        <div>
+            @Html.DisplayFor(modelItem => book.Name) - @Html.DisplayFor(modelItem => book.Author) (@Html.DisplayFor(modelItem => book.Year))
+        </div>
+    }
 </div>

@@ -1,21 +1,29 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using project.Data;
 using project.Models;
+using project.ViewModels;
 
 namespace project.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly LibraryContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, LibraryContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
     {
-        return View();
+        HomeViewModel model = new HomeViewModel();
+        model.Members = _context.Members.ToList();
+        model.Books = _context.Books.ToList();
+
+        return View(model);
     }
 
     public IActionResult Privacy()
