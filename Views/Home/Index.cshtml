@@ -12,10 +12,19 @@
     {
         <div>@Html.DisplayFor(modelItem => member.Name)</div>
     }
-    @foreach (Book book in Model.Books)
-    {
-        <div>
-            @Html.DisplayFor(modelItem => book.Name) - @Html.DisplayFor(modelItem => book.Author) (@Html.DisplayFor(modelItem => book.Year))
-        </div>
-    }
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publish Year</th>
+        </tr>
+        @foreach (Book book in Model.Books)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => book.Name)</td>
+                <td>@Html.DisplayFor(modelItem => book.Author)</td>
+                <td>@Html.DisplayFor(modelItem => book.Year)</td>
+            </tr>
+        }
+    </table>
 </div>
