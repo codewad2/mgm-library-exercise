@@ -51,8 +51,7 @@ public class LibraryService : ILibraryService
         if (_context.Checkouts.Any(co => co.BookId == bookId))
             return false;
 
-        Checkout newCheckout = new Checkout { MemberId = memberId, BookId = bookId };
-        _context.Checkouts.Add(newCheckout);
+        _context.Checkouts.Add(new Checkout { MemberId = memberId, BookId = bookId });
         _context.SaveChanges();
 
         return true;
