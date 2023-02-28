@@ -17,6 +17,18 @@ body {
   margin-bottom: 60px;
 }
 
-#searchTerms {
+#searchTerms, #book-results {
   width: 100%;
+}
+
+.author-column {
+  min-width: 120px;
+}
+
+.year-column {
+  width: 120px;
+}
+
+.actions-column {
+  width: 80px;
 }
