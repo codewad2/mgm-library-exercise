@@ -23,9 +23,16 @@ public class HomeController : Controller
     {
         HomeViewModel model = new HomeViewModel();
         model.Members = _libraryService.GetAllMembers();
-        model.Books = _libraryService.GetBooks(null);
+        model.Books = _libraryService.GetAllBooks();
 
         return View(model);
+    }
+
+    [HttpGet]
+    public IActionResult Search(string? searchTerms)
+    {
+        IEnumerable<Book> model = String.IsNullOrEmpty(searchTerms) ? _libraryService.GetAllBooks() : _libraryService.GetBooks(searchTerms);
+        return PartialView("/Views/Partials/_Books.cshtml", model);
     }
 
     [HttpPost]

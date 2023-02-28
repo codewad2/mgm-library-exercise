@@ -10,22 +10,18 @@
     {
         <div>@Html.DisplayFor(modelItem => member.Name)</div>
     }
-    <table>
-        <tr>
+
+    <form id="searchForm" method="GET" action="@Url.Action("Search", "Home")">
+        <input id="searchTerms" name="searchTerms" type="text" autocomplete="off" />
+    </form>
+
+    <table id="book-results">
+        <tr class="book-table-header">
             <th>Title</th>
             <th>Author</th>
             <th>Publish Year</th>
             <th>Actions</th>
         </tr>
-        <tr>
-            <td><form method="get"><input type="text" name="title_search" id="title_search"/></form></td>
-            <td><form method="get"><input type="text" name="author_search" id="author_search"/></form></td>
-            <td><form method="get"><input type="text" name="year_search" id="year_search"/></form></td>
-            <td></td>
-        </tr>
-        @foreach (Book book in Model.Books)
-        {
-            @Html.Partial("/Views/Partials/_BookRow.cshtml", book);
-        }
+        <partial name="/Views/Partials/_Books.cshtml" for="Books" />
     </table>
 </div>

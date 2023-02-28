@@ -6,7 +6,8 @@ namespace project.Services;
 public interface ILibraryService
 {
     public List<Member> GetAllMembers();
-    public List<Book> GetBooks(string? searchTerms);
+    public List<Book> GetAllBooks();
+    public List<Book> GetBooks(string searchTerms);
     public bool CheckoutBookForMember(int memberId, int bookId);
     public bool CheckinBook(int bookId);
 }
@@ -26,15 +27,20 @@ public class LibraryService : ILibraryService
         return _context.Members.ToList();
     }
 
-    public List<Book> GetBooks(string? searchTerms)
+    public List<Book> GetAllBooks()
     {
-        if (searchTerms == null)
-            return _context.Books.ToList();
+        return _context.Books.ToList();
+    }
+
+    public List<Book> GetBooks(string searchTerms)
+    {
+        string terms = searchTerms.ToLower();
 
         return _context.Books
-            .Where(book =>  book.Name.Contains(searchTerms) ||
-                            book.Author.Contains(searchTerms) ||
-                            book.Year.ToString().Contains(searchTerms)
+            .Where(book =>
+                book.Name.ToLower().Contains(terms) ||
+                book.Author.ToLower().Contains(terms) ||
+                book.Year.ToString().Contains(terms)
             ).ToList();
     }
 

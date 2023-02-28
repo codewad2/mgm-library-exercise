@@ -1,0 +1,7 @@
+@using project.Models;
+@model IEnumerable<Book>
+
+@foreach (Book book in Model)
+{
+    <partial name="/Views/Partials/_BookRow.cshtml" model="book" />
+}
