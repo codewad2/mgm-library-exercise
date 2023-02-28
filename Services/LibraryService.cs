@@ -7,6 +7,7 @@ public interface ILibraryService
 {
     public List<Member> GetAllMembers();
     public List<Book> GetAllBooks();
+    public List<Checkout> GetAllCheckouts();
     public List<Book> GetBooks(string searchTerms);
     public bool CheckoutBookForMember(int memberId, int bookId);
     public bool CheckinBook(int bookId);
@@ -30,6 +31,11 @@ public class LibraryService : ILibraryService
     public List<Book> GetAllBooks()
     {
         return _context.Books.ToList();
+    }
+
+    public List<Checkout> GetAllCheckouts()
+    {
+        return _context.Checkouts.ToList();
     }
 
     public List<Book> GetBooks(string searchTerms)
