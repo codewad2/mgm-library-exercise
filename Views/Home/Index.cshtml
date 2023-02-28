@@ -5,9 +5,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
     @foreach (Member member in Model.Members)
     {
         <div>@Html.DisplayFor(modelItem => member.Name)</div>
@@ -17,14 +15,17 @@
             <th>Title</th>
             <th>Author</th>
             <th>Publish Year</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td><form method="get"><input type="text" name="title_search" id="title_search"/></form></td>
+            <td><form method="get"><input type="text" name="author_search" id="author_search"/></form></td>
+            <td><form method="get"><input type="text" name="year_search" id="year_search"/></form></td>
+            <td></td>
         </tr>
         @foreach (Book book in Model.Books)
         {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => book.Name)</td>
-                <td>@Html.DisplayFor(modelItem => book.Author)</td>
-                <td>@Html.DisplayFor(modelItem => book.Year)</td>
-            </tr>
+            @Html.Partial("/Views/Partials/_BookRow.cshtml", book);
         }
     </table>
 </div>
