@@ -17,6 +17,6 @@ public class LibraryContext : DbContext
     {
         modelBuilder.Entity<Member>().ToTable("members");
         modelBuilder.Entity<Book>().ToTable("books");
-        modelBuilder.Entity<Checkout>().ToTable("checkouts").HasNoKey();
+        modelBuilder.Entity<Checkout>().ToTable("checkouts");
     }
 }
