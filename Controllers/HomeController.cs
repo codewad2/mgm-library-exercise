@@ -36,25 +36,6 @@ public class HomeController : Controller
         return PartialView("/Views/Partials/_Books.cshtml", model);
     }
 
-    [HttpPost]
-    public IActionResult CheckoutBookForMember(int memberId, int bookId)
-    {
-        _libraryService.CheckoutBookForMember(memberId, bookId);
-        return Redirect(Request.Headers.Referer.FirstOrDefault());
-    }
-
-    [HttpPost]
-    public IActionResult CheckinBook(int bookId)
-    {
-        _libraryService.CheckinBook(bookId);
-        return Redirect(Request.Headers.Referer.FirstOrDefault());
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
