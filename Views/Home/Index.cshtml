@@ -21,6 +21,10 @@
         <input name="bookId" type="hidden" value="" />
     </form>    
 
+    <form id="checkin-form" method="Post" action="@Url.Action("CheckinBook", "Home")">
+        <input name="bookId" type="hidden" value="" />
+    </form>    
+
     <form id="searchForm" method="GET" action="@Url.Action("Search", "Home")">
         <input id="searchTerms" name="searchTerms" type="text" autocomplete="off" />
     </form>

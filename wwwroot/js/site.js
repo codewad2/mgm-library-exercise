@@ -14,7 +14,7 @@ function debounce(func, timeout) {
 }
 
 let checkoutForm = $('#checkout-form')
-//let checkinForm = $('#checkin-form')
+let checkinForm = $('#checkin-form')
 let searchForm = $('#searchForm');
 let searchInput = searchForm.find('input[name=searchTerms]');
 let bookResults = $('#book-results');
@@ -27,6 +27,11 @@ function callCheckout(memberId, bookId) {
     checkoutForm.find('input[name=memberId]').val(memberId);
     checkoutForm.find('input[name=bookId]').val(bookId);
     checkoutForm.submit();
+}
+
+function callCheckin(bookId) {
+    checkinForm.find('input[name=bookId]').val(bookId);
+    checkinForm.submit();
 }
 
 searchInput
