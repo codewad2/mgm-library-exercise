@@ -32,3 +32,11 @@ body {
 .actions-column {
   width: 80px;
 }
+
+.book-available {
+  background-color: #bfb;
+}
+
+.book-unavailable {
+  background-color: #eee;
+}
