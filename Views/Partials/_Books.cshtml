@@ -1,7 +1,17 @@
 @using project.Models;
 @model IEnumerable<Book>
 
-@foreach (Book book in Model)
-{
-    <partial name="/Views/Partials/_BookRow.cshtml" model="book" />
-}
+<table id="book-results">
+    <tr class="book-table-header">
+        <th class='title-column'>Title</th>
+        <th class='author-column'>Author</th>
+        <th class='year-column'>Publish Year</th>
+        <th class='actions-column'>Actions</th>
+    </tr>
+
+    @foreach (Book book in Model)
+    {
+        <partial name="/Views/Partials/_BookRow.cshtml" model="book" />
+    }
+
+</table>
