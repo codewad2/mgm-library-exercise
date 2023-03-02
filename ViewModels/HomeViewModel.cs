@@ -6,4 +6,5 @@ public class HomeViewModel
 {
     public List<Member> Members { get; set; }
     public List<Book> Books { get; set; }
+    public List<Checkout> Checkouts { get; set; }
 }

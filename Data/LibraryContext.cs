@@ -15,8 +15,12 @@ public class LibraryContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Member>().ToTable("members");
-        modelBuilder.Entity<Book>().ToTable("books");
+        modelBuilder.Entity<Member>().ToTable("members")
+            .HasMany(member => member.Checkouts)
+            .WithOne(checkout => checkout.Member);
+        modelBuilder.Entity<Book>().ToTable("books")
+            .HasOne(book => book.Checkout)
+            .WithOne(checkout => checkout.Book);
         modelBuilder.Entity<Checkout>().ToTable("checkouts")
             .HasKey(nameof(Checkout.MemberId), nameof(Checkout.BookId));
     }

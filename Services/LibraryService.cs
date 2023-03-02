@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using project.Data;
 using project.Models;
 
@@ -35,7 +39,10 @@ public class LibraryService : ILibraryService
 
     public List<Checkout> GetAllCheckouts()
     {
-        return _context.Checkouts.ToList();
+        return _context.Checkouts
+            .Include(co => co.Member)
+            .Include(co => co.Book)
+            .ToList();
     }
 
     public List<Book> GetBooks(string searchTerms)
@@ -43,6 +50,7 @@ public class LibraryService : ILibraryService
         string terms = searchTerms.ToLower();
 
         return _context.Books
+            .Include(book => book.Checkout)
             .Where(book =>
                 book.Name.ToLower().Contains(terms) ||
                 book.Author.ToLower().Contains(terms) ||

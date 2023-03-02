@@ -13,6 +13,8 @@ function debounce(func, timeout) {
     };
 }
 
+let checkoutForm = $('#checkout-form')
+//let checkinForm = $('#checkin-form')
 let searchForm = $('#searchForm');
 let searchInput = searchForm.find('input[name=searchTerms]');
 let bookResults = $('#book-results');
@@ -20,6 +22,12 @@ let bookResults = $('#book-results');
 let search = debounce(function () {
     searchForm.submit();
 }, 350);
+
+function callCheckout(memberId, bookId) {
+    checkoutForm.find('input[name=memberId]').val(memberId);
+    checkoutForm.find('input[name=bookId]').val(bookId);
+    checkoutForm.submit();
+}
 
 searchInput
     .keyup(search)
@@ -31,7 +39,6 @@ searchForm.submit(function (event) {
         url: searchForm.attr('action'),
         data: searchForm.serialize(),
         success: function(data) {
-            console.log("success: " + data);
             bookResults.find('.book-row').remove();
             bookResults.append(data);
         }
