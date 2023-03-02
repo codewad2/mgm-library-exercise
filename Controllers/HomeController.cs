@@ -39,21 +39,15 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult CheckoutBookForMember(int memberId, int bookId)
     {
-        //return _libraryService.CheckoutBookForMember(memberId, bookId) ?
-        //    new OkResult() :
-        //    new BadRequestResult();
         _libraryService.CheckoutBookForMember(memberId, bookId);
-        return RedirectToAction("Index");
+        return Redirect(Request.Headers.Referer.FirstOrDefault());
     }
 
     [HttpPost]
     public IActionResult CheckinBook(int bookId)
     {
-        //return _libraryService.CheckinBook(bookId) ?
-        //    new OkResult() :
-        //    new BadRequestResult();
         _libraryService.CheckinBook(bookId);
-        return RedirectToAction("Index");
+        return Redirect(Request.Headers.Referer.FirstOrDefault());
     }
 
     public IActionResult Privacy()

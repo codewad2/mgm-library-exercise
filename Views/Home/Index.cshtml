@@ -13,19 +13,12 @@
 
     @foreach (Checkout checkout in Model.Checkouts)
     {
-        <div>@Html.DisplayFor(modelItem => checkout.Member.Id) -> @Html.DisplayFor(modelItem => checkout.Book.Id)</div>
+        <div>@Html.DisplayFor(modelItem => checkout.Member.Name) -> @Html.DisplayFor(modelItem => checkout.Book.Id)</div>
     }
 
-    <form id="checkout-form" method="Post" action="@Url.Action("CheckoutBookForMember", "Home")">
-        <input name="memberId" type="hidden" value="" />
-        <input name="bookId" type="hidden" value="" />
-    </form>    
+    <partial name="/Views/Partials/_CheckoutForms.cshtml" />
 
-    <form id="checkin-form" method="Post" action="@Url.Action("CheckinBook", "Home")">
-        <input name="bookId" type="hidden" value="" />
-    </form>    
-
-    <form id="searchForm" method="GET" action="@Url.Action("Search", "Home")">
+    <form id="searchForm" method="GET" action="@Url.Action("Search", "Books")">
         <input id="searchTerms" name="searchTerms" type="text" autocomplete="off" />
     </form>
 

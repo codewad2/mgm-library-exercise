@@ -29,12 +29,17 @@ public class LibraryService : ILibraryService
 
     public List<Member> GetAllMembers()
     {
-        return _context.Members.ToList();
+        return _context.Members
+            .Include(member => member.Checkouts)
+                .ThenInclude(co => co.Book)
+            .ToList();
     }
 
     public List<Book> GetAllBooks()
     {
-        return _context.Books.ToList();
+        return _context.Books
+            .Include(book => book.Checkout.Member)
+            .ToList();
     }
 
     public List<Checkout> GetAllCheckouts()
