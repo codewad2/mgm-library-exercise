@@ -30,7 +30,11 @@ body {
 }
 
 .actions-column {
-  width: 80px;
+  width: 90px;
+}
+
+.actions-column > button {
+  width: 100%;
 }
 
 .book-available {

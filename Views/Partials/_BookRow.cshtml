@@ -2,10 +2,10 @@
 @model Book;
 
 <tr class="book-row @(Model.Checkout == null ? "book-available" : "book-unavailable")" data-book-id="@Model.Id">
-    <td>@Html.DisplayFor(modelItem => Model.Name)</td>
-    <td>@Html.DisplayFor(modelItem => Model.Author)</td>
-    <td>@Html.DisplayFor(modelItem => Model.Year)</td>
-    <td>
+    <td class='title-column'>@Html.DisplayFor(modelItem => Model.Name)</td>
+    <td class='author-column'>@Html.DisplayFor(modelItem => Model.Author)</td>
+    <td class='year-column'>@Html.DisplayFor(modelItem => Model.Year)</td>
+    <td class='status-column'>
         @if (Model.Checkout == null)
         {
             <span>Available</span>
@@ -13,6 +13,16 @@
         else
         {
             <span>Checked out</span>
+        }
+    </td>
+    <td class='actions-column'>
+        @if (Model.Checkout == null)
+        {
+            <button>Check out</button>
+        }
+        else
+        {
+            <button>Check in</button>
         }
     </td>
 </tr>
