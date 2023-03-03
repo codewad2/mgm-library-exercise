@@ -5,7 +5,7 @@
     <h3>@Html.DisplayFor(model => model.Member.Name)</h3>
 
     <h4>Current checkouts</h4>
-    <table id="book-results">
+    <table id="checkout-results">
         <tr class="book-table-header">
             <th class='title-column'>Title</th>
             <th class='author-column'>Author</th>
@@ -26,6 +26,9 @@
         }
     </table>
 
+    <br>
+
+    <h4>Search Books</h4>
     <form id="book-search-form" method="GET" action="@Url.Action("Search", "Books")">
         <input id="book-search-terms" name="searchTerms" type="text" autocomplete="off" />
     </form>
