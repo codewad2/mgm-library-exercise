@@ -1,0 +1,7 @@
+@using project.Models;
+@model IEnumerable<Member>
+
+@foreach (Member member in Model)
+{
+    <partial name="/Views/Partials/_MemberRow.cshtml" model="member" />
+}

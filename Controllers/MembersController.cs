@@ -19,13 +19,13 @@ public class MembersController : Controller
         _libraryService = libraryService;
     }
 
-    //public IActionResult Index()
-    //{
-    //    MembersViewModel model = new MembersViewModel();
-    //    model.Members = _libraryService.GetAllMembers();
+    public IActionResult Index()
+    {
+        MembersViewModel model = new MembersViewModel();
+        model.Members = _libraryService.GetAllMembers();
 
-    //    return View(model);
-    //}
+        return View(model);
+    }
 
     [HttpGet]
     public IActionResult Details(int id)
@@ -36,10 +36,10 @@ public class MembersController : Controller
         return View(model);
     }
 
-    //[HttpGet]
-    //public IActionResult Search(string? searchTerms)
-    //{
-    //    IEnumerable<Member> model = String.IsNullOrEmpty(searchTerms) ? _libraryService.GetAllMembers() : _libraryService.GetMembers(searchTerms);
-    //    return PartialView("/Views/Partials/_Members.cshtml", model);
-    //}
+    [HttpGet]
+    public IActionResult Search(string? searchTerms)
+    {
+        IEnumerable<Member> model = String.IsNullOrEmpty(searchTerms) ? _libraryService.GetAllMembers() : _libraryService.GetMembers(searchTerms);
+        return PartialView("/Views/Partials/_MemberResults.cshtml", model);
+    }
 }

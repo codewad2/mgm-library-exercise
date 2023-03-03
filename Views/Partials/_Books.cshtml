@@ -10,9 +10,5 @@
         <th class='actions-column'></th>
     </tr>
 
-    @foreach (Book book in Model)
-    {
-        <partial name="/Views/Partials/_BookRow.cshtml" model="book" />
-    }
-
+    <partial name="/Views/Partials/_BookResults.cshtml" model="Model" />
 </table>

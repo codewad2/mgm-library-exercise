@@ -18,8 +18,8 @@
 
     <partial name="/Views/Partials/_CheckoutForms.cshtml" />
 
-    <form id="searchForm" method="GET" action="@Url.Action("Search", "Books")">
-        <input id="searchTerms" name="searchTerms" type="text" autocomplete="off" />
+    <form id="book-search-form" method="GET" action="@Url.Action("Search", "Books")">
+        <input id="book-search-terms" name="searchTerms" type="text" autocomplete="off" />
     </form>
 
     <partial name="/Views/Partials/_Books.cshtml" for="Books" />

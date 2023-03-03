@@ -31,6 +31,6 @@ public class BooksController : Controller
     public IActionResult Search(string? searchTerms)
     {
         IEnumerable<Book> model = String.IsNullOrEmpty(searchTerms) ? _libraryService.GetAllBooks() : _libraryService.GetBooks(searchTerms);
-        return PartialView("/Views/Partials/_Books.cshtml", model);
+        return PartialView("/Views/Partials/_BookResults.cshtml", model);
     }
 }

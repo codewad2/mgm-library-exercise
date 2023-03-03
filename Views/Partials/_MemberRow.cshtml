@@ -1,0 +1,10 @@
+@using project.Models;
+@model Member;
+
+<tr class="member-row">
+    <td class='name-column'>
+        <a asp-controller="Members" asp-action="Details" asp-route-id="@Model.Id">
+            @Html.DisplayFor(modelItem => Model.Name)
+        </a>
+    </td>
+</tr>

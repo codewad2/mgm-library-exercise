@@ -13,6 +13,7 @@ public interface ILibraryService
     public List<Book> GetAllBooks();
     public List<Checkout> GetAllCheckouts();
     public List<Book> GetBooks(string searchTerms);
+    public List<Member> GetMembers(string searchTerms);
     public Member GetMember(int memberId);
     public bool CheckoutBookForMember(int memberId, int bookId);
     public bool CheckinBook(int bookId);
@@ -71,6 +72,15 @@ public class LibraryService : ILibraryService
                 book.Author.ToLower().Contains(terms) ||
                 book.Year.ToString().Contains(terms)
             ).ToList();
+    }
+
+    public List<Member> GetMembers(string searchTerms)
+    {
+        string terms = searchTerms.ToLower();
+
+        return _context.Members
+            .Where(member => member.Name.ToLower().Contains(terms))
+            .ToList();
     }
 
     public bool CheckoutBookForMember(int memberId, int bookId)

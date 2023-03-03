@@ -1,0 +1,13 @@
+@using project.ViewModels;
+@using project.Models;
+@model MembersViewModel;
+
+@{
+    ViewData["Title"] = "Members";
+}
+
+<form id="member-search-form" method="GET" action="@Url.Action("Search", "Members")">
+    <input id="member-search-terms" name="searchTerms" type="text" autocomplete="off" />
+</form>
+
+<partial name="/Views/Partials/_Members.cshtml" for="Members" />

@@ -5,24 +5,36 @@
 
 function debounce(func, timeout) {
     let timer;
-    return (...args) => {
+    return function () {
         clearTimeout(timer);
         timer = setTimeout(() => {
-            func.apply(this, args);
+            func.apply(this, arguments);
         }, timeout);
     };
 }
 
+function ajaxSubmit(form, success) {
+    return $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serialize(),
+        success: success
+    });
+}
+
+let search = function (form) {
+    return debounce(function () {
+        form.submit();
+    }, 350);
+};
+
 let checkoutForm = $('#checkout-form');
 let checkinForm = $('#checkin-form');
 let checkinButton = $('.checkin-button');
-let searchForm = $('#searchForm');
-let searchInput = searchForm.find('input[name=searchTerms]');
+let bookSearchForm = $('#book-search-form');
+let memberSearchForm = $('#member-search-form');
 let bookResults = $('#book-results');
-
-let search = debounce(function () {
-    searchForm.submit();
-}, 350);
+let memberResults = $('#member-results');
 
 function callCheckout(memberId, bookId) {
     checkoutForm.find('input[name=memberId]').val(memberId);
@@ -35,19 +47,31 @@ function callCheckin(bookId) {
     checkinForm.submit();
 }
 
-searchInput
-    .keyup(search)
-    .change(search);
+let bookSearch = search(bookSearchForm);
 
-searchForm.submit(function (event) {
-    $.ajax({
-        type: searchForm.attr('method'),
-        url: searchForm.attr('action'),
-        data: searchForm.serialize(),
-        success: function(data) {
-            bookResults.find('.book-row').remove();
-            bookResults.append(data);
-        }
+bookSearchForm.find('input[name=searchTerms]')
+    .keyup(function () { bookSearch(); })
+    .change(function () { bookSearch(); });
+
+bookSearchForm.submit(function (event) {
+    ajaxSubmit(bookSearchForm, function (data) {
+        bookResults.find('.book-row').remove();
+        bookResults.append(data);
+    });
+
+    event.preventDefault();
+});
+
+let membersSearch = search(memberSearchForm);
+
+memberSearchForm.find('input[name=searchTerms]')
+    .keyup(membersSearch)
+    .change(membersSearch);
+
+memberSearchForm.submit(function (event) {
+    ajaxSubmit(memberSearchForm, function (data) {
+        memberResults.find('.member-row').remove();
+        memberResults.append(data);
     });
 
     event.preventDefault();

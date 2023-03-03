@@ -29,13 +29,6 @@ public class HomeController : Controller
         return View(model);
     }
 
-    [HttpGet]
-    public IActionResult Search(string? searchTerms)
-    {
-        IEnumerable<Book> model = String.IsNullOrEmpty(searchTerms) ? _libraryService.GetAllBooks() : _libraryService.GetBooks(searchTerms);
-        return PartialView("/Views/Partials/_Books.cshtml", model);
-    }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
