@@ -13,6 +13,7 @@ public interface ILibraryService
     public List<Book> GetAllBooks();
     public List<Checkout> GetAllCheckouts();
     public List<Book> GetBooks(string searchTerms);
+    public Member GetMember(int memberId);
     public bool CheckoutBookForMember(int memberId, int bookId);
     public bool CheckinBook(int bookId);
 }
@@ -48,6 +49,15 @@ public class LibraryService : ILibraryService
             .Include(co => co.Member)
             .Include(co => co.Book)
             .ToList();
+    }
+
+    public Member GetMember(int memberId)
+    {
+        return _context.Members
+            .Where(member => member.Id == memberId)
+            .Include(member => member.Checkouts)
+                .ThenInclude(co => co.Book)
+            .SingleOrDefault();
     }
 
     public List<Book> GetBooks(string searchTerms)
