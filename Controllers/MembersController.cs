@@ -19,14 +19,6 @@ public class MembersController : Controller
         _libraryService = libraryService;
     }
 
-    public IActionResult Index()
-    {
-        MembersViewModel model = new MembersViewModel();
-        model.Members = _libraryService.GetAllMembers();
-
-        return View(model);
-    }
-
     [HttpGet]
     public IActionResult Details(int id)
     {

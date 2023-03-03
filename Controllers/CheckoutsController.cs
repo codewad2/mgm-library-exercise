@@ -19,14 +19,6 @@ public class CheckoutsController : Controller
         _libraryService = libraryService;
     }
 
-    public IActionResult Index()
-    {
-        CheckoutsViewModel model = new CheckoutsViewModel();
-        model.Checkouts = _libraryService.GetAllCheckouts();
-
-        return View(model);
-    }
-
     [HttpPost]
     public IActionResult New(int memberId, int bookId)
     {
