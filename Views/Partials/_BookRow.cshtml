@@ -18,11 +18,7 @@
     <td class='actions-column'>
         @if (Model.Checkout == null)
         {
-            <button>Check out</button>
-        }
-        else
-        {
-            <button class="checkin-button" data-book-id="@Model.Id">Check in</button>
+            <button class="checkout-button" data-book-id="@Model.Id">Check out</button>
         }
     </td>
 </tr>

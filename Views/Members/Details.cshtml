@@ -1,28 +1,36 @@
 @using project.ViewModels;
 @model MemberDetailsViewModel;
 
-<h3>@Html.DisplayFor(model => model.Member.Name)</h3>
+<div id="member-details" data-member-id="@Model.Member.Id">
+    <h3>@Html.DisplayFor(model => model.Member.Name)</h3>
 
-<h4>Current checkouts</h4>
-<table id="book-results">
-    <tr class="book-table-header">
-        <th class='title-column'>Title</th>
-        <th class='author-column'>Author</th>
-        <th class='year-column'>Publish Year</th>
-        <th class='actions-column'></th>
-    </tr>
-
-    @foreach (Checkout checkout in Model.Member.Checkouts)
-    {
-        <tr class="book-row">
-            <td class='title-column'>@Html.DisplayFor(modelItem => checkout.Book.Name)</td>
-            <td class='author-column'>@Html.DisplayFor(modelItem => checkout.Book.Author)</td>
-            <td class='year-column'>@Html.DisplayFor(modelItem => checkout.Book.Year)</td>
-            <td class='actions-column'>
-                <button class="checkin-button" data-book-id="@checkout.Book.Id">Check in</button>
-            </td>
+    <h4>Current checkouts</h4>
+    <table id="book-results">
+        <tr class="book-table-header">
+            <th class='title-column'>Title</th>
+            <th class='author-column'>Author</th>
+            <th class='year-column'>Publish Year</th>
+            <th class='actions-column'></th>
         </tr>
-    }
-</table>
 
-<partial name="/Views/Partials/_CheckoutForms.cshtml" />
+        @foreach (Checkout checkout in Model.Member.Checkouts)
+        {
+            <tr class="book-row">
+                <td class='title-column'>@Html.DisplayFor(modelItem => checkout.Book.Name)</td>
+                <td class='author-column'>@Html.DisplayFor(modelItem => checkout.Book.Author)</td>
+                <td class='year-column'>@Html.DisplayFor(modelItem => checkout.Book.Year)</td>
+                <td class='actions-column'>
+                    <button class="checkin-button" data-book-id="@checkout.Book.Id">Check in</button>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <form id="book-search-form" method="GET" action="@Url.Action("Search", "Books")">
+        <input id="book-search-terms" name="searchTerms" type="text" autocomplete="off" />
+    </form>
+
+    <partial name="/Views/Partials/_Books.cshtml" for="Books" />
+
+    <partial name="/Views/Partials/_CheckoutForms.cshtml" />
+</div>

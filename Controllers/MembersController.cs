@@ -32,6 +32,7 @@ public class MembersController : Controller
     {
         MemberDetailsViewModel model = new MemberDetailsViewModel();
         model.Member = _libraryService.GetMember(id);
+        model.Books = _libraryService.GetAllBooks();
 
         return View(model);
     }

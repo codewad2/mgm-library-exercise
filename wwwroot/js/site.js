@@ -28,7 +28,9 @@ let search = function (form) {
     }, 350);
 };
 
+let memberDetails = $('#member-details');
 let checkoutForm = $('#checkout-form');
+let checkoutButton = $('.checkout-button');
 let checkinForm = $('#checkin-form');
 let checkinButton = $('.checkin-button');
 let bookSearchForm = $('#book-search-form');
@@ -83,4 +85,13 @@ checkinButton.click(function (event) {
 
     button.attr('disabled', 'disabled');
     callCheckin(bookId);
+});
+
+checkoutButton.click(function (event) {
+    let button = $(this);
+    let bookId = button.data('book-id');
+    let memberId = memberDetails.data('member-id');
+
+    button.attr('disabled', 'disabled');
+    callCheckout(memberId, bookId);
 });
