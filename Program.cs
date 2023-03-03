@@ -33,6 +33,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "member",
-    pattern: "{controller=Members}/{action=Index}/{id?}");
+    pattern: "{controller=Members}/{action=Details}/{id}");
 
 app.Run();

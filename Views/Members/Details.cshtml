@@ -1,5 +1,8 @@
 @using project.ViewModels;
 @model MemberDetailsViewModel;
+@{
+    ViewData["Title"] = "Member Details";
+}
 
 <div id="member-details" data-member-id="@Model.Member.Id">
     <h3>@Html.DisplayFor(model => model.Member.Name)</h3>

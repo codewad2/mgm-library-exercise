@@ -21,10 +21,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        HomeViewModel model = new HomeViewModel();
+        MembersViewModel model = new MembersViewModel();
         model.Members = _libraryService.GetAllMembers();
-        model.Books = _libraryService.GetAllBooks();
-        model.Checkouts = _libraryService.GetAllCheckouts();
 
         return View(model);
     }

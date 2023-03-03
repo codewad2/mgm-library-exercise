@@ -1,26 +1,17 @@
 ﻿@using project.ViewModels;
 @using project.Models;
-@model HomeViewModel;
+@model MembersViewModel;
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div>
-    @foreach (Member member in Model.Members)
-    {
-        <div>@Html.DisplayFor(modelItem => member.Name)</div>
-    }
+    <h4>Member Search</h4>
 
-    @foreach (Checkout checkout in Model.Checkouts)
-    {
-        <div>@Html.DisplayFor(modelItem => checkout.Member.Name) -> @Html.DisplayFor(modelItem => checkout.Book.Id)</div>
-    }
-
-    <partial name="/Views/Partials/_CheckoutForms.cshtml" />
-
-    <form id="book-search-form" method="GET" action="@Url.Action("Search", "Books")">
-        <input id="book-search-terms" name="searchTerms" type="text" autocomplete="off" />
+    <form id="member-search-form" method="GET" action="@Url.Action("Search", "Members")">
+        <input id="member-search-terms" name="searchTerms" type="text" autocomplete="off" />
     </form>
 
-    <partial name="/Views/Partials/_Books.cshtml" for="Books" />
+    <partial name="/Views/Partials/_Members.cshtml" for="Members" />
 </div>
