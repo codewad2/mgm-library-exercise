@@ -1,7 +1,7 @@
 @using project.Models;
 @model Book;
 
-<tr class="book-row @(Model.Checkout == null ? "book-available" : "book-unavailable")" data-book-id="@Model.Id">
+<tr class="book-row @(Model.Checkout == null ? "book-available" : "book-unavailable")">
     <td class='title-column'>@Html.DisplayFor(modelItem => Model.Name)</td>
     <td class='author-column'>@Html.DisplayFor(modelItem => Model.Author)</td>
     <td class='year-column'>@Html.DisplayFor(modelItem => Model.Year)</td>
@@ -22,7 +22,7 @@
         }
         else
         {
-            <button>Check in</button>
+            <button class="checkin-button" data-book-id="@Model.Id">Check in</button>
         }
     </td>
 </tr>
